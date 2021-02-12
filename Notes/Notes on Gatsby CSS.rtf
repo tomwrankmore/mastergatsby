@@ -1,0 +1,45 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red109\green109\blue109;\red23\green23\blue23;\red67\green192\blue160;
+\red202\green202\blue202;\red183\green111\blue179;\red140\green211\blue254;\red194\green126\blue101;}
+{\*\expandedcolortbl;;\cssrgb\c50196\c50196\c50196;\cssrgb\c11765\c11765\c11765;\cssrgb\c30588\c78824\c69020;
+\cssrgb\c83137\c83137\c83137;\cssrgb\c77255\c52549\c75294;\cssrgb\c61176\c86275\c99608;\cssrgb\c80784\c56863\c47059;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f0\b\fs28 \cf0 \ul \ulc0 Notes on Gatsby intro lessons\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 \ulnone It\'92s possible to just import .css into gatsby-browser.js but we use:\
+\
+Styled Components. A way to do scoped CSS inside React applications.\
+\
+Import normalize.css into Layout.js\
+\
+For global styles, \
+Create GlobalStyle.js\
+Export it as default\
+Import in Layout.js\
+Pop it at the top of the exported function.\
+\pard\pardeftab720\sl420\partightenfactor0
+
+\f2 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 <\cf4 \strokec4 GlobalStyles\cf5 \strokec5  \cf2 \strokec2 />\cf5 \cb1 \strokec5 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 In individual files with scoped styles, \
+\pard\pardeftab720\sl420\partightenfactor0
+
+\f2 \cf6 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 import\cf5 \strokec5  \cf7 \strokec7 styled\cf5 \strokec5  \cf6 \strokec6 from\cf5 \strokec5  \cf8 \strokec8 'styled-components'\cf5 \strokec5 ;\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+Then replace an element like <nav> with <NavStyles>\
+Then at the top create variable called NavStyles set to styled.nav \
+(styled must be followed with the HTML element to be used.)\
+\
+Then just plonk a load of element specific style in between two back ticks.}

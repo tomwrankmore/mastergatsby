@@ -1,0 +1,84 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica-Oblique;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww20820\viewh10660\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f0\b\fs28 \cf0 \ul \ulc0 Order page custom hook\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\i\b0 \cf0 \ulnone This is just an attempt to visualise the flow of data for the form updating hook.
+\f2\i0 \
+\
+The aim of hook is to update state without having a useState call for every single field.\
+\
+useState returns an array of two items, the variable to be updated and the method to update it.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 In order.js returned values from usePizza are destructured.\
+\
+From order.js OrderPage exported function, useForm is called which passes and object containing name and email, set to empty values.\
+\
+Name and email object are passed into useState, therefore making that object the initial state of the state variable useState method.\
+\
+updateValue is made available in order.js\
+\
+onChange event for all fields calls the updateValue function from useForm component.\
+\
+Inside useForm:\
+\
+useForm takes in \'91defaults which is the object containing name and email, set to empty values.\
+\
+defaults = \{name: \'91\'92, email: \'91\'92\}\
+Therefore the returned state variable \'91values\'92 === defaults\
+Because in useState the first item in the returned array is the variable to be updated the second is the method to update that variable.\
+\
+In order.js onChange calls updateValue which is returned from useForm.js\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 updateValue takes in the event which called it.\
+\
+Then it calls setValues which updates the state variable.\
+\
+It copies in the existing which is \{name: \'91\'92, email: \'91\'92\}\
+\
+Then updates the one that called the method dynamically using [e.target.name] which is gunna be either name: or email: and setting it to the value from the field that called updateValue.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b \cf0 \
+The custom hook is a way of updating the state live as the user types in. onChange fires every time they type a letter, the event is passed and accepted by updateValue inside useForm.\
+It\'92s a way of updating the state dynamically using useState without repeating it for every field.\
+\
+\
+\'97\'97\'97\'97\'97\'97\'97\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f2\b0 \cf0 usePizza:
+\f0\b \
+\
+
+\f2\b0 Returns useState updated variable \'91order\'92 and two methods \'91addToOrder\'92 and \'91removeFromOrder\'92\
+\
+order.js destructures these values when called usePizza.\
+\
+\'91pizzas\'92 from the graphql query & input: values are passed in\
+\
+useState initial state is empty array.\
+\
+addToOrder function, takes in orderedPizza, passed in from function call in order.js\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 addToOrder runs setOrder method to update state variable. \
+\
+setOrder returns an array with all current items in the state variable spread in + orderedPizza added to the array.\
+\
+When user clicks add to order, run addToOrder function and add the passed object to the state variable array.\
+\
+removeFromOrder takes in the index and returns an array where the first item is all current items in the state variable upto the passed index &\
+the second item is all current items in the state variable after the index. Done with spread operator.\
+}

@@ -1,0 +1,107 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fswiss\fcharset0 Helvetica-BoldOblique;}
+{\colortbl;\red255\green255\blue255;\red66\green179\blue255;\red23\green23\blue23;\red212\green214\blue154;
+\red202\green202\blue202;\red140\green211\blue254;\red66\green179\blue255;\red23\green23\blue23;\red194\green126\blue101;
+\red70\green137\blue204;}
+{\*\expandedcolortbl;;\cssrgb\c30980\c75686\c100000;\cssrgb\c11765\c11765\c11765;\cssrgb\c86275\c86275\c66667;
+\cssrgb\c83137\c83137\c83137;\cssrgb\c61176\c86275\c99608;\cssrgb\c30980\c75686\c100000;\cssrgb\c11765\c11765\c11765;\cssrgb\c80784\c56863\c47059;
+\cssrgb\c33725\c61176\c83922;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17900\viewh15780\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f0\b\fs28 \cf0 \ul \ulc0 ToppingsFilter\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 \ulnone \
+\
+
+\f0\b\fs32 \ul Data journey: 
+\f1\b0\fs28 \ulnone \
+ToppingsFilter is in the components folder.\
+It\'92s rendered out in pizzas.js and is passed pageContext.topping which is topping from the createPage method. \
+In ToppingsFilter.js this variable is taken in as activeTopping and is only used to set classNames.\
+\
+
+\f0\b useStaticQuery
+\f1\b0  to get all pizza\'92s names and id\'92s, saved in destructured variable \'91pizzas\'92\
+\
+Variable 
+\f2 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 toppingsWithCounts
+\f1 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0  is set to the returned value of 
+\f2 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 countPizzasInToppings\cf5 \strokec5 (\cf2 \strokec2 pizzas\cf5 \strokec5 .\cf6 \strokec6 nodes\cf5 \strokec5 )\cb1 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 pizza.nodes is from the 
+\f0\b useStaticQuery\
+
+\f1\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f2 \cf7 \cb8 \expnd0\expndtw0\kerning0
+toppingsWithCounts
+\f1 \cf0 \cb1 \kerning1\expnd0\expndtw0  takes in pizza.nodes as \'91pizzas\'92,\
+Maps over them,\
+Returns just the toppings, which are arrays of arrays since each pizza has multiple toppings.\
+flat() squashes all into a big array.\
+Reduce creates an object\
+Each iterations creates and object entry if one doesn\'92t exist\
+If one does exist it adds 1 to the count property of the object.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b \cf0 Counts 
+\f1\b0 returns an object containing:\
+name: topping.name\
+id: topping.id\
+count: how many times this topping has come up during the reduce.\
+\
+sortedToppings makes an array from the Object using Object.values.\
+sort() method puts them in order, highest at the top.\
+\
+\pard\pardeftab720\sl420\partightenfactor0
+
+\f2 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 countPizzasInToppings
+\f1 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0  returns the 
+\f2 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 sortedToppings
+\f1 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0  array!.
+\f2 \cf5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 Therefore 
+\f2 \cf7 \cb8 \expnd0\expndtw0\kerning0
+toppingsWithCounts
+\f1 \cf0 \cb1 \kerning1\expnd0\expndtw0  is set to 
+\f2 \cf7 \cb8 \expnd0\expndtw0\kerning0
+sortedToppings
+\f1 \cf0 \cb1 \kerning1\expnd0\expndtw0  array.\
+\
+Now in the JSX we return we can map over this array that contains topping names, id\'92s and counts.\
+\
+Each one links through to /topping/topping.name.\
+\
+ToppingsFilter\'92s job is to surface a list all toppings with a count next to \
+\
+
+\f3\i\b\fs38 NOW, TASTY BIT!
+\f1\i0\b0\fs28 \
+\
+Because in gatsby-node we create page for all toppings, each topping URL will 
+\f0\b\fs32 use pizzas.js as it\'92s template
+\f1\b0\fs28  and use pizzas.js\'92s QUERY but filter the results based on the variable passed in from 
+\f2 \cf6 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 toppingRegex:\cf5 \strokec5  \cf9 \strokec9 `/\cf10 \strokec10 $\{\cf6 \strokec6 topping\cf5 \strokec5 .\cf6 \strokec6 name\cf10 \strokec10 \}\cf9 \strokec9 /i`\cf5 \strokec5 ,\cb1 \
+
+\f1 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+The filter only returns pizzas from allSanityPizza using regex which is the topping name. So it will return all pizzas that have \'91mushroom\'92 in their toppings list.\
+\
+\'97\'97\'97\'97\'97\'97\'97\
+\
+PizzaList takes in pizzas from the query in pizzas.js. If there\'92s not pageContext variable, this will be ALL PIZZAS. If there is and the render is coming from createPage in node, it will be the pizzas based on the filtered query.}
