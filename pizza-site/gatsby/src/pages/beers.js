@@ -1,9 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import SEO from '../components/SEO';
 
-const BeerGridStyle = styled.div`
+const BeerGridStyles = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -21,51 +20,49 @@ const SingleBeerStyles = styled.div`
     display: grid;
     align-items: center;
     font-size: 10px;
-    color: black;
   }
 `;
 
 export default function BeersPage({ data }) {
-  const beers = data.beers.nodes;
   return (
     <>
-      <SEO title={`Beers! We have ${beers.length} in stock`} />
-      <h2 className="center">We have {beers.length} beers. Dine in only.</h2>
-      <BeerGridStyle>
-        {beers.map((beer) => {
+      <h2 className="center">
+        We have {data.beers.nodes.length} Beers Available. Dine in Only!
+      </h2>
+      <BeerGridStyles>
+        {data.beers.nodes.map((beer) => {
           const rating = Math.round(beer.rating.average);
-          console.log(rating);
           return (
             <SingleBeerStyles key={beer.id}>
               <img src={beer.image} alt={beer.name} />
-
               <h3>{beer.name}</h3>
               {beer.price}
               <p title={`${rating} out of 5 stars`}>
-                {'⭐'.repeat(rating)}
+                {`⭐`.repeat(rating)}
                 <span style={{ filter: `grayscale(100%)` }}>
-                  {'⭐'.repeat(5 - rating)}
+                  {`⭐`.repeat(5 - rating)}
                 </span>
+                <span>({beer.rating.reviews})</span>
               </p>
             </SingleBeerStyles>
           );
         })}
-      </BeerGridStyle>
+      </BeerGridStyles>
     </>
   );
 }
 
 export const query = graphql`
-  query BeerQuery {
+  query {
     beers: allBeer {
       nodes {
-        name
-        id
-        price
         rating {
-          reviews
           average
+          reviews
         }
+        id
+        name
+        price
         image
       }
     }

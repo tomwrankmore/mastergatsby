@@ -76,6 +76,8 @@ async function fetchBeersAndTurnIntoNodes({
   // loop over each one
   for (const beer of beers) {
     // create node for each beer
+    if (!beer.name) return; // if there's no entry in the API then return. breaks if there's a null.
+
     const nodeMeta = {
       id: createNodeId(`beer-${beer.name}`),
       parent: null,
@@ -86,7 +88,6 @@ async function fetchBeersAndTurnIntoNodes({
         contentDigest: createContentDigest(beer),
       },
     };
-    console.log('beer', beer);
     // create node for that beer
     actions.createNode({
       // this creates node with the original beer json data + the meta data for gatsby we created above.
