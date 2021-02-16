@@ -15,11 +15,14 @@ export default function Sidebar() {
           S.editor()
             .schemaType('storeSettings')
             // make new doc id so we don't rndm string of numbers
-            .documentId('downtown')
+            .documentId('headingley')
         ),
       // add in the rest of our document items
       ...S.documentTypeListItems().filter(
         (item) => item.getId() !== 'storeSettings'
+        // this says: for each item that this array returns,
+        // check if the item id is NOT equal to storeSettings
+        // Reason: to remove settings from sidebar
       ),
     ]);
 }

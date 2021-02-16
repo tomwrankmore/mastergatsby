@@ -5,27 +5,24 @@
 \paperw11900\paperh16840\margl1440\margr1440\vieww20820\viewh10660\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
 
-\f0\b\fs28 \cf0 \ul \ulc0 Pizza Order\
+\f0\b\fs28 \cf0 \ul \ulc0 Lesson 45 - Querying Home Page data.\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f1\b0 \cf0 \ulnone New component called PizzaOrder\
+\f1\b0 \cf0 \ulnone Time sensitive data that needs to update immediately and not just when Gatsby builds like for the other graphql queries.\
 \
-Takes in \'91order\'92 which is coming from the returned state variable in usePizza, still available as it\'92s in the same scope,\
-pizzas, all pizzas from query.\
+Gatsby is built at build time, so data will sit on website until it\'92s re generated. \
 \
-\'91Order\'92 is an array returned from usePizza after any addToOrder or removeFromOrder methods have updated the variable.\
+Makes more sense to fetch data \'91client side\'92 at \'91run time\'92. Once Gatsby is build there is no graphql API to hit up for data.\
 \
-removeFromOrder also returned from usePizza.\
+So we must go to the source of the data ie. Sanity from the \'91client side\'92 ie the browser.\
 \
-Returns JSX, mapped order array. Remember order is a returned array from usePizza/useState\
+We build it entirely \'91client side\'92 meaning that when you load the page it will go an fetch the data from Sanity graphql API.\
 \
-Iterated to item is called \'91singleOrder\'92\
+Sanity end point is stored in .env\
+GATSBY_GRAPHQL_ENDPOINT="https://j6u9lu30.api.sanity.io/v1/graphql/production/default"\
 \
-addToOrder only gets pizza.id and size. So items in \'91order\'92 array only have those two parameters. So \'91singleOrder\'92 only has them too!\
+useLatestData in utils gets the data from our endpoint. \
+It uses a side effect to fetch data from endpoint.\
 \
-MenuItemStlyes is a styled div.\
-\
-Create variable \'91pizza\'92 which is set to find item in pizzas array where the id matches the id of the item from the order array.\
-\
-Button to run removeFromOrder.}
+}
