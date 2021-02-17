@@ -15,6 +15,12 @@ export default {
       description: 'Name store setting',
     },
     {
+      name: 'opening',
+      title: 'Store Opening Times',
+      type: 'string',
+      description: 'Store Opening Times',
+    },
+    {
       name: 'slicemasters',
       title: 'Slicemaster curently slicing',
       type: 'array',

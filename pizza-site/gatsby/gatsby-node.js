@@ -129,7 +129,7 @@ async function turnSliceMastersIntoPages({ graphql, actions }) {
   });
 
   // figure out how many pages there are based on how many slicemasters there are and how many per page
-  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE); // string into number I set it to 3
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE); // string into number I set it to 3 in .env
   const pageCount = Math.ceil(data.slicemasters.totalCount / pageSize); // 9 / 3
   console.log(
     `there are ${data.slicemasters.totalCount} total people and we have ${pageCount} with ${pageSize} per page`

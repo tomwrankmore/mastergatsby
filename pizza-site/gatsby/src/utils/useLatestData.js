@@ -6,6 +6,9 @@ const gql = String.raw; // fakes out a graphql library for vscode sake, so it hi
 const deets = gql`
     name
     _id
+    slug {
+      current
+    }
     image {
       asset {
         url
@@ -23,6 +26,9 @@ export default function useLatestData() {
   // slicemasters
   const [slicemasters, setSlicemasters] = useState();
 
+  // opening time
+  const [openingtime, setOpeningtime] = useState();
+
   // Use a side effect to fetch data from graphql end point
   // This query is hitting the Sanity GraphQL API at RUNTIME not a Gatsby build time scenario.
 
@@ -38,6 +44,7 @@ export default function useLatestData() {
           query {
             StoreSettings(id: "headingley") {
               name
+              opening
               slicemasters {
                 ${deets}
               }
@@ -55,14 +62,18 @@ export default function useLatestData() {
         // set the data NOT WORKING
         setHotSlices(res.data.StoreSettings.hotSlices);
         setSlicemasters(res.data.StoreSettings.slicemasters);
+        setOpeningtime(res.data.StoreSettings.opening);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
+  console.log(slicemasters);
+
   return {
     hotslices,
     slicemasters,
+    openingtime,
   };
 }

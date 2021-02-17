@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 
+const path = require(`path`);
 dotenv.config({ path: '.env' });
 
 export default {
@@ -13,6 +14,15 @@ export default {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/assets/images`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
 
     {
       // plugin that sources data from Sanity

@@ -6,7 +6,7 @@ export default function LoadingGrid({ count }) {
   return (
     <ItemsGrid>
       {Array.from({ length: count }).map((_, index) => (
-        <ItemStyles key={index}>
+        <ItemStyles key={`loading-${index}`}>
           <p>
             <span className="mark">loading...</span>
           </p>
